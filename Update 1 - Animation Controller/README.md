@@ -25,3 +25,5 @@ Implemented an animation controller to handle playing and blending animations fo
 - The SideWalk parameter value is set based on the sign of the y value of the cross product
 - If the cross product y value between the aim vector and the movement vector is positive, then the player is looking left else they are looking right
 - Both the Walk and SideWalk parameters values are changed over time depending on input so animations transition smootly between each other
+
+![Blend Tree - Worldly Planes](https://github.com/user-attachments/assets/09e2ea09-7680-4c49-853a-a57ab67471bd)
