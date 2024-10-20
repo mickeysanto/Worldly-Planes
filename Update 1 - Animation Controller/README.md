@@ -3,6 +3,9 @@
 ## Overview
 Implemented an animation controller to handle playing and blending animations for "twin stick" style inputs (when the player's aim and movement are independant).
 
+## Video Demo
+[Demo Link](https://youtu.be/38iDybO0yF8)
+
 ## Script Rundown
 
 ### PlayerAim
@@ -26,4 +29,5 @@ Implemented an animation controller to handle playing and blending animations fo
 - If the cross product y value between the aim vector and the movement vector is positive, then the player is looking left else they are looking right
 - Both the Walk and SideWalk parameters values are changed over time depending on input so animations transition smootly between each other
 
+## Pictures
 ![Blend Tree - Worldly Planes](https://github.com/user-attachments/assets/09e2ea09-7680-4c49-853a-a57ab67471bd)
