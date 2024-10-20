@@ -55,7 +55,7 @@ public class AnimationController : MonoBehaviour
             dotProduct = Vector2.Dot(forward2D, movement.moveDirection);
             crossProduct = Vector3.Cross(movement.forward, moveDirection3D);
 
-            walkVal += ((walkVal > dotProduct ? -1 : 1) * Time.deltaTime * acceleration);
+            walkVal = dotProduct;
 
             // if dotProduct > 0 player is walking forward else backwards
             if (dotProduct > 0)
@@ -82,16 +82,28 @@ public class AnimationController : MonoBehaviour
                 }
             }
         }
-        else if(walkVal != 0 && sideWalkVal != 0)
+        else if(walkVal != 0 || sideWalkVal != 0)
         {
-            //transitions the character back to the Idle animation state 
-
-            walkVal += ((walkVal > 0 ? -1 : 1) * Time.deltaTime * acceleration);
-            sideWalkVal += ((sideWalkVal > 0 ? -1 : 1) * Time.deltaTime * acceleration);
+            transitionIdle(ref walkVal);
+            transitionIdle(ref sideWalkVal);
         }
 
         animator.SetFloat(walkValHash, walkVal);
         animator.SetFloat(sideWalkValHash, sideWalkVal);
+    }
+
+    //transitions the character back to the Idle animation state 
+    private void transitionIdle(ref float value)
+    {
+        if (value != 0)
+        {
+            value += ((value > 0 ? -1 : 1) * Time.deltaTime * acceleration);
+
+            if (Mathf.Abs(value) < Time.deltaTime * acceleration)
+            {
+                value = 0;
+            }
+        }
     }
 
     private void DebugLog()
