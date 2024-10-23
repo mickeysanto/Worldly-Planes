@@ -4,7 +4,7 @@
 Implemented an animation controller to handle playing and blending animations for "twin stick" style inputs (when the player's aim and movement are independant).
 
 ## Video Demo
-[Demo Link](https://youtu.be/bFWlolixR78]
+[Demo Link](https://youtu.be/bFWlolixR78)
 
 ## Script Rundown
 
