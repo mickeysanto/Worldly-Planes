@@ -14,11 +14,11 @@ public class AnimationController : MonoBehaviour
     private Vector2 forward2D; // 2D vector representation of the direction the playe is facing
 
     private float dotProduct;
-    private float walkVal; // the Y axis for the player movement blend tree
+    private float forwardWalkVal; // the Y axis for the player movement blend tree
     private float sideWalkVal;// the X axis for the player movement blend tree
     private float acceleration = 8; // speed of transitions between animations
 
-    private int walkValHash;
+    private int forwardWalkValHash;
     private int sideWalkValHash;
 
     private void Start()
@@ -28,10 +28,10 @@ public class AnimationController : MonoBehaviour
 
         forward2D = Vector2.zero;
 
-        walkVal = 0;
+        forwardWalkVal = 0;
         sideWalkVal = 0;
 
-        walkValHash = Animator.StringToHash("Walk");
+        forwardWalkValHash = Animator.StringToHash("ForwardWalk");
         sideWalkValHash = Animator.StringToHash("SideWalk");
     }
 
@@ -55,40 +55,48 @@ public class AnimationController : MonoBehaviour
             dotProduct = Vector2.Dot(forward2D, movement.moveDirection);
             crossProduct = Vector3.Cross(movement.forward, moveDirection3D);
 
-            walkVal = dotProduct;
-
             // if dotProduct > 0 player is walking forward else backwards
             if (dotProduct > 0)
             {
+                if (forwardWalkVal < 1)
+                {
+                    forwardWalkVal += Time.deltaTime * acceleration;
+                }
+
                 // if the cross porduct is positive then the player is moving left else right
-                if(crossProduct.normalized.y > 0 && sideWalkVal > -1)
+                if (crossProduct.normalized.y > 0 && sideWalkVal > dotProduct - 1)
                 {
                     sideWalkVal -= Time.deltaTime * acceleration;
                 }
-                else if(crossProduct.normalized.y < 0 && sideWalkVal < 1)
+                else if(crossProduct.normalized.y < 0 && sideWalkVal < 1 - dotProduct)
                 {
                     sideWalkVal += Time.deltaTime * acceleration;
                 }
             }
             else
             {
-                if (crossProduct.normalized.y > 0 && sideWalkVal < 2)
+                if (forwardWalkVal > -1)
+                {
+                    forwardWalkVal -= Time.deltaTime * acceleration;
+                }
+
+                if (crossProduct.normalized.y > 0 && sideWalkVal < 1 - (-1 * dotProduct))
                 {
                     sideWalkVal += Time.deltaTime * acceleration;
                 }
-                else if (crossProduct.normalized.y < 0 && sideWalkVal > -2)
+                else if (crossProduct.normalized.y < 0 && sideWalkVal > (-1 * dotProduct) - 1)
                 {
                     sideWalkVal -= Time.deltaTime * acceleration;
                 }
             }
         }
-        else if(walkVal != 0 || sideWalkVal != 0)
+        else if(forwardWalkVal != 0 || sideWalkVal != 0)
         {
-            transitionIdle(ref walkVal);
+            transitionIdle(ref forwardWalkVal);
             transitionIdle(ref sideWalkVal);
         }
 
-        animator.SetFloat(walkValHash, walkVal);
+        animator.SetFloat(forwardWalkValHash, forwardWalkVal);
         animator.SetFloat(sideWalkValHash, sideWalkVal);
     }
 
@@ -106,11 +114,11 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    private void DebugLog()
-    {
-        Debug.Log("Dot: " + dotProduct);
-        Debug.Log("Cross: " + crossProduct);
-        Debug.Log("Aim Direction: " + forward2D);
-        Debug.Log("Move Direction: " + movement.moveDirection);
-    }
+    //private void DebugLog()
+    //{
+    //    Debug.Log("Dot: " + dotProduct);
+    //    Debug.Log("Cross: " + crossProduct);
+    //    Debug.Log("Aim Direction: " + forward2D);
+    //    Debug.Log("Move Direction: " + movement.moveDirection);
+    //}
 }
