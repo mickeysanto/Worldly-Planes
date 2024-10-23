@@ -80,7 +80,6 @@ public class AnimationController : MonoBehaviour
                     forwardWalkVal -= Time.deltaTime * acceleration;
                 }
 
-                // if the cross porduct is positive then the player is moving left else right
                 if (crossProduct.normalized.y > 0 && sideWalkVal < 1 - (-1 * dotProduct))
                 {
                     sideWalkVal += Time.deltaTime * acceleration;
