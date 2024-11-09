@@ -1,7 +1,7 @@
 # Worldly Planes Update 1: Twin Stick Animation Controller & Movement
 
 ## Overview
-Implemented an animation controller to handle playing and blending animations for "twin stick" style inputs (when the player's aim and movement are independant).
+Implemented an animation controller to handle playing and blending animations for "twin stick" style inputs (when the player's aim and movement are independant). The character model was made in MagicaVoxel and the animations were made in Blender.
 
 ## Video Demo
 [Demo Link](https://youtu.be/bFWlolixR78)
