@@ -41,4 +41,5 @@ Implemented a projectile shooting system that uses an object pool to reuse proje
 - Added the Attack function which sets animator parameters that keep track of if the player is holding the attack button and if a projectile was shot 
 
 ## Pictures
-![Blend Tree - Worldly Planes](https://github.com/user-attachments/assets/11706793-3303-440f-aadf-6a7b1f4ce7d6)
+![Transition Tree - Worldly Planes](https://github.com/user-attachments/assets/c7c94577-5d5d-4ca9-a379-7612bc099b73)
+
