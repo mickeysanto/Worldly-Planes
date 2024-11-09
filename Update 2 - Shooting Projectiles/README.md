@@ -4,7 +4,7 @@
 Implemented a projectile shooting system that uses an object pool to reuse projectiles which is more performant than instantiating and destroying them. Created fireball projectiles that use a particle system for graphics and spherecast for hit detection instead of using colliders to be more performant. The attack animations were made in Blender and the fireball vfx was made using Gimp and Unity's particle system.
 
 ## Video Demo
-[Demo Link](https://youtu.be/bFWlolixR78)
+[Demo Link](https://youtu.be/NOM3izz8rSM)
 
 ## Script Rundown
 
