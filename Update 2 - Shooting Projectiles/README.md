@@ -1,7 +1,7 @@
 # Worldly Planes Update 2: Shooting Projectiles & Object Pooling
 
 ## Overview
-Implemented a projectile shooting system that uses an object pool to reuse projectiles which is more performant than instantiating and destroying them. Created fireball projectiles that use a particle system for graphics and spherecast for hit detection instead of using colliders to be more performant. The attack animations were made in Blender and the fireball vfx was made using Gimp and Unity's particle system.
+Implemented a projectile shooting system that uses an object pool to reuse projectiles which is more performant than instantiating and destroying them. Created fireball projectiles that use a particle system for graphics and spherecast for hit detection instead of using colliders in order to be more performant. The attack animations were made in Blender and the fireball vfx was made using Gimp and Unity's particle system.
 
 ## Video Demo
 [Demo Link](https://youtu.be/NOM3izz8rSM)
@@ -27,7 +27,7 @@ Implemented a projectile shooting system that uses an object pool to reuse proje
 - If what was returned is not null (there is a projectile available to shoot), it sets its position to where the projectile should shoot from, rotates it, and activates it
 
 ### ProjectileMove
-- When a projectile is activated, every frame the GameObject this class is attached to will move in a specified direction at a pace dictated by a specified projectile speed
+- When a projectile is activated, the GameObject this class is attached to will move in a specified direction at a pace dictated by a specified projectile speed every frame
 - Every frame a spherecast is casted at the position of the moving GameObject to check for collisions
 - If the spherecast detects a collider or the distance the projectile has traveled exceeds its max range, the projectile will stop
 - If the projectile particle system and impact particle system are not null then the impact particle system plays and then the projectile is deactivated
